@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4369835e473e4a1192a886d5adf7163b" Name="Diagram1">
+        <EntityTypeShape EntityType="SchoolDataBaseModel.cours" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SchoolDataBaseModel.etudiant_cours" Width="1.5" PointX="3.25" PointY="7.125" />
+        <EntityTypeShape EntityType="SchoolDataBaseModel.etudiants" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="SchoolDataBaseModel.examens" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="SchoolDataBaseModel.professeur_cours" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="SchoolDataBaseModel.professeurs" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="SchoolDataBaseModel.sections" Width="1.5" PointX="6.875" PointY="4.75" />
+        <AssociationConnector Association="SchoolDataBaseModel.FK_etudiant_cours_cours" />
+        <AssociationConnector Association="SchoolDataBaseModel.FK_professeur_cours_cours" />
+        <AssociationConnector Association="SchoolDataBaseModel.FK_etudiant_cours_etudiants" />
+        <AssociationConnector Association="SchoolDataBaseModel.FK_professeur_cours_professeurs" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

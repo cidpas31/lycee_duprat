@@ -1,0 +1,48 @@
+﻿<Window x:Class="lycee_duprat.Windows_etudiant_cours"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows_etudiant_cours" Height="285" Width="431">
+    <Grid Background="#FFE5E5E5" Margin="0,10,2,0">
+
+        <Label Content="liste de cours" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" Width="155" Height="23"/>
+        <ListBox x:Name="Liste_Box_court_base_de_donne" 
+                             HorizontalAlignment="Left" 
+                             Height="197" Margin="10,35,0,0" 
+                             VerticalAlignment="Top" 
+                             Width="155"
+                             ItemsSource="{Binding liste_de_cours_data_base}"
+                             SelectedItem="{Binding cours_selection_de_la_liste_de_cour_main_view_etudiantcours}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Nom_du_cours}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Label Content="liste de cours de l'etudiant" HorizontalAlignment="Left" Height="23" Margin="243,7,0,0" VerticalAlignment="Top" Width="172"/>
+
+        <ListBox HorizontalAlignment="Left" 
+                             Height="197" 
+                             Margin="243,35,0,0" 
+                             VerticalAlignment="Top" 
+                             Width="172"
+                             ItemsSource="{Binding liste_cours_observable_de_main_view_etudiant_cours}"                             
+                             SelectedItem="{Binding cours_a_effacer_main_view_etudiantcours}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Nom_du_cours}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Content="modifier" 
+                HorizontalAlignment="Left" 
+                Margin="170,7,0,0" 
+                VerticalAlignment="Top" Width="68" Click="Btn_modifier_Click" Height="23"/>
+
+    </Grid>
+</Window>
