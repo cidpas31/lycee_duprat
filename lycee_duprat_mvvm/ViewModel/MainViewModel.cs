@@ -77,7 +77,6 @@ namespace lycee_duprat_mvvm.ViewModel
         }
         public ICommand Click_Bouton_ajoute_relay_command { get; set; }
 
-
         private void CreateClick_Bouton_ajoute_relay_command()
         {
             Click_Bouton_ajoute_relay_command = new RelayCommand(SaveExecute);
@@ -97,7 +96,6 @@ namespace lycee_duprat_mvvm.ViewModel
 
 
         private string _String_input_text_relay_commande_parameter_bouton_ajouté_prop { get; set; }
-
         public string String_input_text_relay_commande_parameter_bouton_ajouté
         {
             get
@@ -138,12 +136,13 @@ namespace lycee_duprat_mvvm.ViewModel
 
 
 
-        private string _String_input_text_Nom { get; set; }
+        private string _String_input_text_Nom { get; set; }  
         public string String_input_text_Nom
         {
             get
             {
                 return _String_input_text_Nom;
+
             }
             set
             {
@@ -152,9 +151,7 @@ namespace lycee_duprat_mvvm.ViewModel
             }
         }
 
-
-        private string _String_input_text_password { get; set; }
-
+        private string _String_input_text_password { get; set; }    
         public string String_input_text_password
         {
             get
@@ -167,15 +164,12 @@ namespace lycee_duprat_mvvm.ViewModel
                 //RaisePropertyChanged("String_output_text_relay_commande_parameter");
             }
         }
+
         public RelayCommand Click_Bouton_confirmer_quand_Name_et_password_rempli { get; set; }
-
-
         private void on_command_avec_validation()
         {
             MessageBox.Show("comande avec validation");
         }
-
-
         public bool Can_execute_on_comand_avec_validation()
         {
             if (String_input_text_password != null && String_input_text_Nom != null )
@@ -193,6 +187,10 @@ namespace lycee_duprat_mvvm.ViewModel
         /// <summary>
         /// ______________________________________________________________________________________
         /// </summary>
+        /// test de codage de raise propretychange
+        /// 
+        /////////
 
+  
     }
 }
