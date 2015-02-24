@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lycee_duprat_data", "lycee_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lycee_duprat_mvvm", "lycee_duprat_mvvm\lycee_duprat_mvvm.csproj", "{BF1A29AD-FA4B-4102-BD88-FDC15EF2C023}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication_first_html5", "WebApplication_first_html5\WebApplication_first_html5.csproj", "{4033ABF1-339F-415F-9CDB-842E46CCE596}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{BF1A29AD-FA4B-4102-BD88-FDC15EF2C023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF1A29AD-FA4B-4102-BD88-FDC15EF2C023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF1A29AD-FA4B-4102-BD88-FDC15EF2C023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4033ABF1-339F-415F-9CDB-842E46CCE596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4033ABF1-339F-415F-9CDB-842E46CCE596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4033ABF1-339F-415F-9CDB-842E46CCE596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4033ABF1-339F-415F-9CDB-842E46CCE596}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
