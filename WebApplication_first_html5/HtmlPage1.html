@@ -10,22 +10,15 @@
 
     <link rel="icon" type="image/x-icon" href="nom_de_mon_icon" />
     <link rel="stylesheet" href="/styles" />
+    <script src=" javascript1.js"></script>
 
-    <script type="text/javascript" src="">
-
-        function TestJs1() {
-        //    alert('rouge');
-        //    var res = confirm("voulez vous coucher avec moi ce soir");
-            //
-        }
-    </script>
 </head>
 <body>
     <form action="page2.html">
         <input type="text" name="un text" />
         <input type="email" />
         <input type="password" />
-        <input type="button" name="bouton1" value="bouton1_value" />
+        <input type="button" name="bouton1" value="bouton1_value" onclick="TestJs1()"/>
         <input type="radio" name="radio1" value="radio1_value" />
         <input type="datetime" />
 
@@ -46,39 +39,25 @@
         <span>je suis dans la div 1</span>
     </div>
     <div>
-        <p>j'essaye d afficher une image dans div2 src="D:\doc\image\freeny\Qee_Anatomy_Spin_by_freeny.gif encode en base64"</p>
+        <p>j'essaye d afficher une image dans div2 src="D:\doc\image\freeny\Qee_Anatomy_Spin_by_freeny.gif"</p>
     </div>
-
-    <table>
-        <tr>
-            <td>
-                tr1 td1
-            </td>
-            <td>
-                tr1 td2
-            </td>
-            <td>
-                tr1 td3
-            </td>
-            <td>
-                tr1 td4
-            </td>
-        </tr>
-        <tr>
-            <td>
-                tr2 td1
-            </td>     
-            <td>      
-                tr2 td2
-            </td>     
-            <td>      
-                tr2 td3
-            </td>     
-            <td>      
-                tr2 td4
-            </td>
-        </tr>
-    </table>
+    <fieldset>
+        <p>utilisation d'un fieldset pour cette table</p>
+        <table>
+            <tr>
+                <td>tr1 td1</td>
+                <td>tr1 td2</td>
+                <td>tr1 td3</td>
+                <td>tr1 td4</td>
+            </tr>
+            <tr>
+                <td>tr2 td1</td>
+                <td>tr2 td2</td>
+                <td>tr2 td3</td>
+                <td>tr2 td4</td>
+            </tr>
+        </table>
+    </fieldset>
 
 
 
@@ -99,7 +78,7 @@
 
 
     <ul>
-        <li>L1_UL</li>
+        <li>L1_UL_liste ordonnée</li>
         <li>L2_UL</li>
         <li>L3_UL</li>
         <li>L4_UL</li>
@@ -108,7 +87,7 @@
 
 
     <ol>
-        <li>L1_OL</li>
+        <li>L1_OL liste non ordonné</li>
         <li>L2_OL</li>
         <li>L3_OL</li>
         <li>L4_OL</li>
