@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Input;
+using System.Windows;
 
 namespace lycee_duprat_mvvm.ViewModel
 {
@@ -48,9 +49,16 @@ namespace lycee_duprat_mvvm.ViewModel
             ////}
             CreateClick_Bouton_ajoute_relay_command();
             Click_Bouton_ajoute_relay_command_paramter = new RelayCommand<object>(On_Click_Bouton_ajoute_relay_command_paramter);
-
+            Click_Bouton_confirmer_quand_Name_et_password_rempli = new RelayCommand(on_command_avec_validation,
+                                                                    Can_execute_on_comand_avec_validation);
 
         }
+
+
+
+        /// <summary>
+        /// ______________________________________________________________________________________
+        /// </summary>
 
  
 
@@ -80,6 +88,10 @@ namespace lycee_duprat_mvvm.ViewModel
             String_relay_commande = "tu as appuyer sur le bouton save!";
         }
 
+
+        /// <summary>
+        /// ______________________________________________________________________________________
+        /// </summary>
 
 
 
@@ -119,5 +131,68 @@ namespace lycee_duprat_mvvm.ViewModel
         {
             String_output_text_relay_commande_parameter = obj.ToString();
         }
+
+/// <summary>
+/// ______________________________________________________________________________________
+/// </summary>
+
+
+
+        private string _String_input_text_Nom { get; set; }
+        public string String_input_text_Nom
+        {
+            get
+            {
+                return _String_input_text_Nom;
+            }
+            set
+            {
+                _String_input_text_Nom = value;
+                RaisePropertyChanged("String_output_text_relay_commande_parameter");
+            }
+        }
+
+
+        private string _String_input_text_password { get; set; }
+
+        public string String_input_text_password
+        {
+            get
+            {
+                return _String_input_text_password;
+            }
+            set
+            {
+                _String_input_text_password = value;
+                //RaisePropertyChanged("String_output_text_relay_commande_parameter");
+            }
+        }
+        public RelayCommand Click_Bouton_confirmer_quand_Name_et_password_rempli { get; set; }
+
+
+        private void on_command_avec_validation()
+        {
+            MessageBox.Show("comande avec validation");
+        }
+
+
+        public bool Can_execute_on_comand_avec_validation()
+        {
+            if (String_input_text_password != null && String_input_text_Nom != null )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// ______________________________________________________________________________________
+        /// </summary>
+
     }
 }

@@ -19,7 +19,31 @@
         	HorizontalAlignment="Center" 
         	Command="{Binding Click_Bouton_ajoute_relay_command_paramter}"
             CommandParameter="{Binding Text, ElementName=textblock_input_text_relay_commande_parameter_bouton_ajouté}"/>
-            <TextBox x:Name="text_block_output_text_relay_commande_parameter_bouton_ajouté" Text="{Binding String_output_text_relay_commande_parameter}"/>            
+            <TextBox x:Name="text_block_output_text_relay_commande_parameter_bouton_ajouté" Text="{Binding String_output_text_relay_commande_parameter}"/>
+            <Label>==================================</Label>
+            <TextBlock>nom</TextBlock>
+            <TextBox x:Name="textblock_input_text_Name" 
+                     Text="{Binding String_input_text_Nom, 
+                UpdateSourceTrigger=PropertyChanged}"/>
+            <!--"UpdateSourceTrigger=PropertyChanged"  permet de passer dans la propriete a cahque lettre taper et nom a la perte du focus-->
+            <TextBlock>password</TextBlock>
+            <TextBox x:Name="textblock_input_text_password" 
+                     Text="{Binding String_input_text_password, 
+                UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="Bouton_valide_command_action" 
+        	Content="Bouton_valide_command_action" 
+        	HorizontalAlignment="Center" 
+        	Command="{Binding Click_Bouton_confirmer_quand_Name_et_password_rempli}"/>
+
+            <Label>==================================</Label>
+            <TextBlock>new_name</TextBlock>
+            <TextBox x:Name="textblock_input_text_new_name" Text="{Binding String_input_text_new_name}"/>
+            <Button x:Name="Bouton2_valide_command_action" 
+        	Content="Bouton2_valide_command_action" 
+        	HorizontalAlignment="Center" 
+        	Command="{Binding Click_Bouton_confirmer_quand_new_name_rempli}"
+            CommandParameter="{Binding Text, ElementName=textblock_input_text_new_name}"/>
+
         </StackPanel>
     </Grid>
 </Window>
