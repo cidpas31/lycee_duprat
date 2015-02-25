@@ -1,0 +1,63 @@
+﻿body {
+}
+
+section.page-section {
+    background-color: #5F9EA0;
+    max-width: 30rem;
+    margin: auto; 
+    border-radius: 7px;
+}
+.container fieldset{
+        border-radius: 7px;
+        border-color: #334; 
+        border-bottom-width:10px;
+}
+
+.creditcard fieldset{
+    border-radius: 7px;
+    border-color: #1E90FF; 
+    background-color: #2F4F4F;
+    border-bottom-width:medium;
+    border-top-width:medium;
+}
+
+.field fieldset {
+    border-radius: 7px;
+    border-color: #1E90FF; 
+    background-color: #2F4F4F;
+    border-bottom-width:medium;
+    border-top-width:medium;
+}
+.field label {
+    float:left;
+}
+
+.field input{
+    float: right;
+}
+.field textarea{
+    float: right;
+}
+
+
+form {
+    max-width: 30rem;    
+}
+
+.container .field {
+    margin-bottom: 5px;
+}
+
+.container .creditcard {
+    margin-bottom: 5px;
+}
+.container img{
+    max-width:20px;
+}
+
+.container button{
+margin-left: 40%;
+border-radius: 7px;
+border-color: #334;
+margin-bottom: 5px;
+}

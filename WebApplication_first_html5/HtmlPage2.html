@@ -1,14 +1,159 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>page2</title>
-    <style> 
-        .Maclasse{
-                }
- </style>
+    <title>sectionulaire</title>
+    <meta charset="utf-8" />
+    <link href="/styles/body.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/formulaire.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/footer.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/header.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="script/JavaScript1.js"></script>
 </head>
 <body>
-    <span class=" = Maclasse">mon span</span>
-    <div> ligne1 de ma div <br /> ligne2 de ma div </div>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="title_sectionulaire_page">formulaire d'enregistrement pour TP html 5</h1>
+        </div>
+    </header>
+
+
+
+    <section class="page-section">
+        <form class="container">
+            <fieldset>
+                <h1>Step 1: Your details</h1>
+
+                <section method="post" action="/registration/new" id="registration-section">
+
+                    <div class="field">
+                        <fieldset>
+                            <label for="first-name">First name:</label>
+                            <input type="text" id="first-name" name="FirstName" required="required" autofocus="autofocus" placeholder="dupont" />
+                        </fieldset>
+                    </div>
+
+
+                    <div class="field">
+                        <fieldset>
+                            <label for="last-name">Last name:</label>
+                            <input type="text" id="last-name" name="LastName" required="required" placeholder="Jean" />
+                        </fieldset>
+                    </div>
+
+
+                    <div class="field">
+                        <fieldset>
+                            <label for="email-address">Email address:</label>
+                            <input type="email" id="email-address" name="EmailAddress" required="required" placeholder="xxxx@xxx.com" />
+                        </fieldset>
+                    </div>
+
+
+                    <div class="field">
+                        <fieldset>
+                            <label for="Phone">Phone:</label>
+                            <input type="tel" id="Phone" name="Phone" required="required" placeholder="+33600000000" />
+                        </fieldset>
+                    </div>
+
+                </section>
+
+                <h1>Step 2: Delivrery adresse</h1>
+
+                <section method="post" action="/registration/new" id="registration-section">
+                    <div class="field">
+                        <fieldset>
+                            <label for="adresse">Adresse :</label>
+                            <textarea type="text" id="adresse" name="adresse" required="required"></textarea>
+                        </fieldset>
+                    </div>
+                    <div class="field">
+                        <fieldset>
+                            <label for="postcode">Postcode :</label>
+                            <input type="text" id="postcode" name="postcode" required="required" />
+                        </fieldset>
+                    </div>
+                    <div class="field">
+                        <fieldset>
+                            <label for="country">Country :</label>
+                            <input type="text" id="country" name="country" required="required" />
+                        </fieldset>
+                    </div>
+
+                </section>
+
+                <h1>Step 3: Card credit details</h1>
+
+                <section method="post" action="/registration/new" id="registration-section">
+                   <div class="creditcard">
+                        <fieldset>
+                            <label for="Card-type">Card type:</label>
+
+                            <input type="radio" id="radio_visa" name="radio_card" required="required" />
+                            <img src="image/izo9oyrt.jpeg" />
+                            <label for="radio_visa">Visa</label>
+                            <input type="radio" id="radio_master" name="radio_card" required="required" />
+                            <img src="image/qdlqabxu.jpeg" />
+                            <label for="radio_master">Master</label>
+                            <!--pour choisir soit l une soit l autre des radio il faut le mettre le même nom le logiciel gere la mecanique-->
+
+                        </fieldset>
+                    </div>
+                    <div class="field">
+                        <fieldset>
+                            <label for="Card-number">Card number:</label>
+                            <input type="text" id="Card-number" name="Cardnumber" required="required" />
+                        </fieldset>
+                    </div>
+                    <div class="field">
+                        <fieldset>
+                            <label for="Card-securitycode">Security code:</label>
+                            <input type="text" id="Card-securitycode" name="Cardsecuritycode" required="required" />
+                        </fieldset>
+                    </div>
+                    <div class="field">
+                        <fieldset>
+                            <label for="Card-nameoncard">Name on card:</label>
+                            <input type="text" id="Card-nameoncard" name="Cardnameoncard" required="required" />
+                        </fieldset>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <button type="submit">Bienvenue</button>
+                    </div>
+                </section>
+                <section>
+                    <div class="field">
+                        <fieldset>
+                            <button type="button" onclick="afficher_text()">Afficher</button>
+                        </fieldset>
+                    </div>
+                </section>
+            </fieldset>
+        </form>
+    </section>
+
+    <footer class="page-footer">
+        <div class="container">
+            <p>
+                Hosted by Audiopulse
+            </p>
+            <address>
+                Audiopulse<br />
+                8 rue Jean Goujon<br />
+                Toulouse<br />
+                31500
+            </address>
+            <p>
+                2015 Audiopulse
+                <!--&#169; je ne sais pas a quoi sert cette ecriture-->
+            </p>
+        </div>
+    </footer>
+
 </body>
 </html>

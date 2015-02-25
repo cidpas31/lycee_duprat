@@ -1,0 +1,13 @@
+﻿body {
+}
+
+footer.page-footer {
+    background-color: #333;
+    color: #fff;
+    font-size: 1.4rem;
+    height: 18rem;
+}
+
+footer.page-footer .container {
+    padding: 1rem;
+}

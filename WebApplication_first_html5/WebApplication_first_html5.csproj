@@ -59,7 +59,13 @@
   <ItemGroup>
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
-    <Content Include="JavaScript1.js" />
+    <Content Include="image\izo9oyrt.jpeg" />
+    <Content Include="image\qdlqabxu.jpeg" />
+    <Content Include="script\JavaScript1.js" />
+    <Content Include="styles\body.css" />
+    <Content Include="styles\footer.css" />
+    <Content Include="styles\formulaire.css" />
+    <Content Include="styles\header.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
