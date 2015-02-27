@@ -11,6 +11,7 @@ namespace WebApplication_first_html5.server
     {
         public class Etudiant
         {
+            public string date_de_souscription { get; set; }
             public string first_name { get; set; }
             public string last_name { get; set; }
             public string age { get; set; }
@@ -22,6 +23,7 @@ namespace WebApplication_first_html5.server
         {
             Etudiant Mon_etudiant = new Etudiant();
             //attention dans La reqest IL faut mettre le name de ma Text box html tout ce qui passe est un string
+            Mon_etudiant.date_de_souscription = Request.Form["dateofsubscription"];
             Mon_etudiant.first_name = Request.Form["FirstName"];
             Mon_etudiant.last_name = Request.Form["LastName"];
             Mon_etudiant.age = Request.Form["Age"];
@@ -32,6 +34,10 @@ namespace WebApplication_first_html5.server
                 ", " + Mon_etudiant.last_name + ". il a :" + Mon_etudiant.age +
                 ". On peut le joindre au " + Mon_etudiant.phone + 
                 ". Il est en " + Mon_etudiant.section + ". Son adresse mail est : " + Mon_etudiant.email_adresse; 
+            if(Mon_etudiant.date_de_souscription != null)
+            {
+                lbl.Text += ". L'enregistrement a eu lieu à :" + Mon_etudiant.date_de_souscription;
+            }
         }
     }
 }

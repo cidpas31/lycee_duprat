@@ -8,8 +8,9 @@
 //};
 
 function submission_etudiant() {
-    var text_FirstName = document.getElementById("first-name");
-    var text_LastName = document.getElementById("last-name");
+    document.getElementById("date_of_subscription").value = Date();
+    //var text_FirstName = document.getElementById("first-name");
+    //var text_LastName = document.getElementById("last-name");
     //var text_Age = document.getElementById("age");
     //var text_Phone = document.getElementById("phone");
     //var text_radio_seconde = document.getElementById("radio_seconde");
@@ -35,14 +36,6 @@ function submission_etudiant() {
     //Mon_etudiant.Phone = text_Phone.value;
     //Mon_etudiant.Section = text_section.value;
     //Mon_etudiant.email_adresse = text_email_adresse.value;
-
-    var ma_liste_etudiant = document.getElementById("ma_liste_etudiant");
-    if (ma_liste_etudiant != null)
-    {
-        ma_liste_etudiant.innerText = text_FirstName.value;
-
-    }
-
     //document.getElementById["ma_liste_etudiant"].innerText = text_FirstName.value;
-    return false;
+    return true;
 }

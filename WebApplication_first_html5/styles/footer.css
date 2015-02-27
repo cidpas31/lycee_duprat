@@ -1,13 +1,9 @@
-﻿body {
-}
-
-footer.page-footer {
-    background-color: #333;
-    color: #fff;
+﻿footer.page-footer {
     font-size: 1rem;
-    height: 10rem;
-}
-
-footer.page-footer .container {
-    padding: 1rem;
+    margin-top:20px;
+    border-radius: 15px;
+    /*padding: 1rem;/*marge a l'interieur de mon conteneur*/
+    padding-left:1rem;
+    padding-top:0.1rem;
+    padding-bottom:0.1rem;
 }

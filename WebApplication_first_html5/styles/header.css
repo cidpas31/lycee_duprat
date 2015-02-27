@@ -1,9 +1,8 @@
-﻿body {
-}
-
-header.page-header {
-    margin: auto;
-    color: #FFF;
+﻿header.page-header {
+    /*margin: 10px;*/
     padding: 1rem;
     text-align: center;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    font-family:Arial;
 }
