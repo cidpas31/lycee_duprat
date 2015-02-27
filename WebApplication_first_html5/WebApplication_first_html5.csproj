@@ -64,6 +64,10 @@
     <Content Include="HtmlPage3.html" />
     <Content Include="image\izo9oyrt.jpeg" />
     <Content Include="image\qdlqabxu.jpeg" />
+    <Content Include="packages.config" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="script\creer_un_etudiant.js" />
     <Content Include="script\JavaScript1.js" />
     <Content Include="script\solution.js" />
@@ -85,6 +89,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
