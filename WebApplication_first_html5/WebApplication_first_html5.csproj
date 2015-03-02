@@ -38,7 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -58,6 +66,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="authentification_gestion_des_etudiant.html" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -91,22 +100,44 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Creercours.html" />
     <Content Include="CreerEtudiant.html" />
+    <Content Include="CreerProfesseur.html" />
     <Content Include="HtmlPage1.html" />
     <Content Include="HtmlPage2.html" />
     <Content Include="HtmlPage3.html" />
     <Content Include="image\izo9oyrt.jpeg" />
     <Content Include="image\qdlqabxu.jpeg" />
     <Content Include="packages.config" />
+    <EntityDeploy Include="database\Database_gestion_etudiant.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Database_gestion_etudiant.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="database\Database_gestion_etudiant.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Database_gestion_etudiant.edmx</DependentUpon>
+      <LastGenOutput>Database_gestion_etudiant.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="database\Database_gestion_etudiant.edmx.diagram">
+      <DependentUpon>Database_gestion_etudiant.edmx</DependentUpon>
+    </Content>
+    <Content Include="database\Database_gestion_etudiant.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Database_gestion_etudiant.edmx</DependentUpon>
+      <LastGenOutput>Database_gestion_etudiant.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="page_navigation_gestion_etudiant.html" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.3.js" />
     <Content Include="Scripts\jquery-ui-1.11.3.min.js" />
+    <Content Include="script\authentification.js" />
     <Content Include="script\creer_un_etudiant.js" />
     <Content Include="script\creer_un_etudiant_jquery.js" />
     <Content Include="script\JavaScript1.js" />
     <Content Include="script\solution.js" />
+    <Content Include="server\authentification.aspx" />
     <Content Include="server\gestion_des_etudiants.aspx" />
     <Content Include="styles\body.css" />
     <Content Include="styles\footer.css" />
@@ -118,7 +149,35 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="database\Database_gestion_etudiant.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database_gestion_etudiant.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Database_gestion_etudiant.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Database_gestion_etudiant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database_gestion_etudiant.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="database\Etudiants.cs">
+      <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\Name_Password.cs">
+      <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="server\authentification.aspx.cs">
+      <DependentUpon>authentification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="server\authentification.aspx.designer.cs">
+      <DependentUpon>authentification.aspx</DependentUpon>
+    </Compile>
     <Compile Include="server\gestion_des_etudiants.aspx.cs">
       <DependentUpon>gestion_des_etudiants.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -136,6 +195,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,26 +1,28 @@
-﻿body {background-color: #333;
-}
-a.navigation{
-    color:#292122;    
+﻿body {
+    background:linear-gradient( #333, #000);
 }
 
-a.navigation:hover{
-    color:#fff;   
+a.navigation {
+    color: #5F9EA0;
 }
+
+    a.navigation:hover {
+        color: #fff;
+    }
 
 section.page-section {
-    background-color: #5F9EA0;
-     	
+    /*background-color: #5F9EA0;*/
+    background: linear-gradient( #5F9EA0, #1c375b);
     /*background-color:#BC4444;*/
 }
 
 .container fieldset {
     /*border-color: #334;*/
     border-color: #000000;
-    border-width:2px;
-    border-style:solid;
-    margin-left:-2px;
-        margin-right:-2px;
+    border-width: 2px;
+    border-style: solid;
+    margin-left: -2px;
+    margin-right: -2px;
 }
 
 .creditcard fieldset {
@@ -30,10 +32,12 @@ section.page-section {
 
 .field fieldset {
     border-color: #000000;
-    background-color: #2F4F4F;
-    border-width:2px;
-    border-style:solid;
+    /*background-color: #2F4F4F;*/
+    /*background-color: #93d6c3;*/
+    background-color:#333;
+    border-width: 2px;
+    border-style: solid;
+    color: #fff;
     /*border-color: #000000;
        background-color:#AC1717;*/
 }
-

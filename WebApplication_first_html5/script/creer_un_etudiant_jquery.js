@@ -1,10 +1,10 @@
-﻿function date_picker_function() {
-    $("#datepicker").datepicker();
-}
+﻿//function date_picker_function() {
+//    $("#datepicker").datepicker();
+//}
 
 function document_ready()
 {
-    date_picker_function();
+    //date_picker_function();
     document.getElementById("Date").innerHTML = Date();
 }
 
