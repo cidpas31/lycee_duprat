@@ -5,64 +5,187 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Site_gestion_etudiantModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="association_etudiant_cours">
+          <Key>
+            <PropertyRef Name="FK_cours" />
+            <PropertyRef Name="FK_etudians" />
+          </Key>
+          <Property Name="FK_cours" Type="int" Nullable="false" />
+          <Property Name="FK_etudians" Type="int" Nullable="false" />
+          <Property Name="association_table" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cours" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Etudiants">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="First_name" Type="char" MaxLength="50" Nullable="false" />
-          <Property Name="Last_name" Type="char" MaxLength="50" Nullable="false" />
-          <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
-          <Property Name="Section" Type="char" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="varchar" MaxLength="80" />
+          <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Section" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Name_Password">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="char" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_association_etudiant_cours_cours">
+          <End Role="cours" Type="Self.cours" Multiplicity="1" />
+          <End Role="association_etudiant_cours" Type="Self.association_etudiant_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_etudiant_cours">
+              <PropertyRef Name="FK_cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_association_etudiant_cours_Etudiants">
+          <End Role="Etudiants" Type="Self.Etudiants" Multiplicity="1" />
+          <End Role="association_etudiant_cours" Type="Self.association_etudiant_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etudiants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_etudiant_cours">
+              <PropertyRef Name="FK_etudians" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Site_gestion_etudiantModelStoreContainer">
+          <EntitySet Name="association_etudiant_cours" EntityType="Self.association_etudiant_cours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cours" EntityType="Self.cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Etudiants" EntityType="Self.Etudiants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Name_Password" EntityType="Self.Name_Password" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_association_etudiant_cours_cours" Association="Self.FK_association_etudiant_cours_cours">
+            <End Role="cours" EntitySet="cours" />
+            <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_association_etudiant_cours_Etudiants" Association="Self.FK_association_etudiant_cours_Etudiants">
+            <End Role="Etudiants" EntitySet="Etudiants" />
+            <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Site_gestion_etudiantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Site_gestion_etudiantEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="association_etudiant_cours" EntityType="Site_gestion_etudiantModel.association_etudiant_cours" />
+          <EntitySet Name="cours" EntityType="Site_gestion_etudiantModel.cours" />
           <EntitySet Name="Etudiants" EntityType="Site_gestion_etudiantModel.Etudiants" />
           <EntitySet Name="Name_Password" EntityType="Site_gestion_etudiantModel.Name_Password" />
+          <AssociationSet Name="FK_association_etudiant_cours_cours" Association="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours">
+            <End Role="cours" EntitySet="cours" />
+            <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_association_etudiant_cours_Etudiants" Association="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants">
+            <End Role="Etudiants" EntitySet="Etudiants" />
+            <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="association_etudiant_cours">
+          <Key>
+            <PropertyRef Name="FK_cours" />
+            <PropertyRef Name="FK_etudians" />
+          </Key>
+          <Property Name="FK_cours" Type="Int32" Nullable="false" />
+          <Property Name="FK_etudians" Type="Int32" Nullable="false" />
+          <Property Name="association_table" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="cours" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours" FromRole="association_etudiant_cours" ToRole="cours" />
+          <NavigationProperty Name="Etudiants" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants" FromRole="association_etudiant_cours" ToRole="Etudiants" />
+        </EntityType>
+        <EntityType Name="cours">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cours1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="association_etudiant_cours" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours" FromRole="cours" ToRole="association_etudiant_cours" />
+        </EntityType>
         <EntityType Name="Etudiants">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
-          <Property Name="Section" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="date" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Section" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="association_etudiant_cours" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants" FromRole="Etudiants" ToRole="association_etudiant_cours" />
         </EntityType>
         <EntityType Name="Name_Password">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <Association Name="FK_association_etudiant_cours_cours">
+          <End Type="Site_gestion_etudiantModel.cours" Role="cours" Multiplicity="1" />
+          <End Type="Site_gestion_etudiantModel.association_etudiant_cours" Role="association_etudiant_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_etudiant_cours">
+              <PropertyRef Name="FK_cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_association_etudiant_cours_Etudiants">
+          <End Type="Site_gestion_etudiantModel.Etudiants" Role="Etudiants" Multiplicity="1" />
+          <End Type="Site_gestion_etudiantModel.association_etudiant_cours" Role="association_etudiant_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etudiants">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_etudiant_cours">
+              <PropertyRef Name="FK_etudians" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Site_gestion_etudiantModelStoreContainer" CdmEntityContainer="Site_gestion_etudiantEntities">
+          <EntitySetMapping Name="association_etudiant_cours">
+            <EntityTypeMapping TypeName="Site_gestion_etudiantModel.association_etudiant_cours">
+              <MappingFragment StoreEntitySet="association_etudiant_cours">
+                <ScalarProperty Name="association_table" ColumnName="association_table" />
+                <ScalarProperty Name="FK_etudians" ColumnName="FK_etudians" />
+                <ScalarProperty Name="FK_cours" ColumnName="FK_cours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cours">
+            <EntityTypeMapping TypeName="Site_gestion_etudiantModel.cours">
+              <MappingFragment StoreEntitySet="cours">
+                <ScalarProperty Name="cours1" ColumnName="cours" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Etudiants">
             <EntityTypeMapping TypeName="Site_gestion_etudiantModel.Etudiants">
               <MappingFragment StoreEntitySet="Etudiants">
@@ -72,6 +195,7 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Last_name" ColumnName="Last_name" />
                 <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

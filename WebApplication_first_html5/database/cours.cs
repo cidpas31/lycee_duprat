@@ -12,21 +12,15 @@ namespace WebApplication_first_html5.database
     using System;
     using System.Collections.Generic;
     
-    public partial class Etudiants
+    public partial class cours
     {
-        public Etudiants()
+        public cours()
         {
             this.association_etudiant_cours = new HashSet<association_etudiant_cours>();
         }
     
         public int id { get; set; }
-        public string date { get; set; }
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
-        public string Age { get; set; }
-        public string Phone { get; set; }
-        public string Section { get; set; }
-        public string Email { get; set; }
+        public string cours1 { get; set; }
     
         public virtual ICollection<association_etudiant_cours> association_etudiant_cours { get; set; }
     }

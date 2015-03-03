@@ -4,9 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="26d4bc3bad154d11a40d1edd50448fbf" Name="Diagram1">
-        <EntityTypeShape EntityType="Site_gestion_etudiantModel.Etudiants" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="Site_gestion_etudiantModel.Name_Password" Width="1.5" PointX="2.75" PointY="0.75" />
+      <Diagram DiagramId="26d4bc3bad154d11a40d1edd50448fbf" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="Site_gestion_etudiantModel.association_etudiant_cours" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="Site_gestion_etudiantModel.cours" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Site_gestion_etudiantModel.Etudiants" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="Site_gestion_etudiantModel.Name_Password" Width="1.5" PointX="5" PointY="2.25" />
+        <AssociationConnector Association="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours" />
+        <AssociationConnector Association="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

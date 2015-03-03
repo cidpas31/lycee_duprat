@@ -25,6 +25,8 @@ namespace WebApplication_first_html5.database
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<association_etudiant_cours> association_etudiant_cours { get; set; }
+        public virtual DbSet<cours> cours { get; set; }
         public virtual DbSet<Etudiants> Etudiants { get; set; }
         public virtual DbSet<Name_Password> Name_Password { get; set; }
     }
