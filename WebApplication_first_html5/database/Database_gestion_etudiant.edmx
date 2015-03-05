@@ -14,25 +14,35 @@
           <Property Name="FK_etudians" Type="int" Nullable="false" />
           <Property Name="association_table" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="association_prof_cours">
+          <Key>
+            <PropertyRef Name="FK_Cours" />
+            <PropertyRef Name="FK_Professeur" />
+          </Key>
+          <Property Name="FK_Cours" Type="int" Nullable="false" />
+          <Property Name="FK_Professeur" Type="int" Nullable="false" />
+          <Property Name="association_table" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="cours">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cours" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Etudiants">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="date" Type="varchar" MaxLength="80" />
-          <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Age" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Section" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="date_modif" Type="varchar" MaxLength="50" />
+          <Property Name="date" Type="nvarchar" MaxLength="40" />
+          <Property Name="First_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Last_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Age" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Section" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Name_Password">
           <Key>
@@ -41,6 +51,17 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Professeurs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_association_etudiant_cours_cours">
           <End Role="cours" Type="Self.cours" Multiplicity="1" />
@@ -66,11 +87,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_association_prof_cours_cours">
+          <End Role="cours" Type="Self.cours" Multiplicity="1" />
+          <End Role="association_prof_cours" Type="Self.association_prof_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_prof_cours">
+              <PropertyRef Name="FK_Cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_association_prof_cours_Professeurs">
+          <End Role="Professeurs" Type="Self.Professeurs" Multiplicity="1" />
+          <End Role="association_prof_cours" Type="Self.association_prof_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professeurs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_prof_cours">
+              <PropertyRef Name="FK_Professeur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Site_gestion_etudiantModelStoreContainer">
           <EntitySet Name="association_etudiant_cours" EntityType="Self.association_etudiant_cours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="association_prof_cours" EntityType="Self.association_prof_cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cours" EntityType="Self.cours" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Etudiants" EntityType="Self.Etudiants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Name_Password" EntityType="Self.Name_Password" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Professeurs" EntityType="Self.Professeurs" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_association_etudiant_cours_cours" Association="Self.FK_association_etudiant_cours_cours">
             <End Role="cours" EntitySet="cours" />
             <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
@@ -79,6 +126,14 @@
             <End Role="Etudiants" EntitySet="Etudiants" />
             <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
           </AssociationSet>
+          <AssociationSet Name="FK_association_prof_cours_cours" Association="Self.FK_association_prof_cours_cours">
+            <End Role="cours" EntitySet="cours" />
+            <End Role="association_prof_cours" EntitySet="association_prof_cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_association_prof_cours_Professeurs" Association="Self.FK_association_prof_cours_Professeurs">
+            <End Role="Professeurs" EntitySet="Professeurs" />
+            <End Role="association_prof_cours" EntitySet="association_prof_cours" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -86,9 +141,11 @@
       <Schema Namespace="Site_gestion_etudiantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Site_gestion_etudiantEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="association_etudiant_cours" EntityType="Site_gestion_etudiantModel.association_etudiant_cours" />
+          <EntitySet Name="association_prof_cours" EntityType="Site_gestion_etudiantModel.association_prof_cours" />
           <EntitySet Name="cours" EntityType="Site_gestion_etudiantModel.cours" />
           <EntitySet Name="Etudiants" EntityType="Site_gestion_etudiantModel.Etudiants" />
           <EntitySet Name="Name_Password" EntityType="Site_gestion_etudiantModel.Name_Password" />
+          <EntitySet Name="Professeurs" EntityType="Site_gestion_etudiantModel.Professeurs" />
           <AssociationSet Name="FK_association_etudiant_cours_cours" Association="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours">
             <End Role="cours" EntitySet="cours" />
             <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
@@ -96,6 +153,14 @@
           <AssociationSet Name="FK_association_etudiant_cours_Etudiants" Association="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants">
             <End Role="Etudiants" EntitySet="Etudiants" />
             <End Role="association_etudiant_cours" EntitySet="association_etudiant_cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_association_prof_cours_cours" Association="Site_gestion_etudiantModel.FK_association_prof_cours_cours">
+            <End Role="cours" EntitySet="cours" />
+            <End Role="association_prof_cours" EntitySet="association_prof_cours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_association_prof_cours_Professeurs" Association="Site_gestion_etudiantModel.FK_association_prof_cours_Professeurs">
+            <End Role="Professeurs" EntitySet="Professeurs" />
+            <End Role="association_prof_cours" EntitySet="association_prof_cours" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="association_etudiant_cours">
@@ -109,26 +174,39 @@
           <NavigationProperty Name="cours" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours" FromRole="association_etudiant_cours" ToRole="cours" />
           <NavigationProperty Name="Etudiants" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants" FromRole="association_etudiant_cours" ToRole="Etudiants" />
         </EntityType>
+        <EntityType Name="association_prof_cours">
+          <Key>
+            <PropertyRef Name="FK_Cours" />
+            <PropertyRef Name="FK_Professeur" />
+          </Key>
+          <Property Name="FK_Cours" Type="Int32" Nullable="false" />
+          <Property Name="FK_Professeur" Type="Int32" Nullable="false" />
+          <Property Name="association_table" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cours" Relationship="Site_gestion_etudiantModel.FK_association_prof_cours_cours" FromRole="association_prof_cours" ToRole="cours" />
+          <NavigationProperty Name="Professeurs" Relationship="Site_gestion_etudiantModel.FK_association_prof_cours_Professeurs" FromRole="association_prof_cours" ToRole="Professeurs" />
+        </EntityType>
         <EntityType Name="cours">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cours1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="association_etudiant_cours" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_cours" FromRole="cours" ToRole="association_etudiant_cours" />
+          <NavigationProperty Name="association_prof_cours" Relationship="Site_gestion_etudiantModel.FK_association_prof_cours_cours" FromRole="cours" ToRole="association_prof_cours" />
         </EntityType>
         <EntityType Name="Etudiants">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="date" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Age" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Section" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_modif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="First_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Section" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="association_etudiant_cours" Relationship="Site_gestion_etudiantModel.FK_association_etudiant_cours_Etudiants" FromRole="Etudiants" ToRole="association_etudiant_cours" />
         </EntityType>
         <EntityType Name="Name_Password">
@@ -138,6 +216,18 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Professeurs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="association_prof_cours" Relationship="Site_gestion_etudiantModel.FK_association_prof_cours_Professeurs" FromRole="Professeurs" ToRole="association_prof_cours" />
         </EntityType>
         <Association Name="FK_association_etudiant_cours_cours">
           <End Type="Site_gestion_etudiantModel.cours" Role="cours" Multiplicity="1" />
@@ -163,6 +253,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_association_prof_cours_cours">
+          <End Type="Site_gestion_etudiantModel.cours" Role="cours" Multiplicity="1" />
+          <End Type="Site_gestion_etudiantModel.association_prof_cours" Role="association_prof_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cours">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_prof_cours">
+              <PropertyRef Name="FK_Cours" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_association_prof_cours_Professeurs">
+          <End Type="Site_gestion_etudiantModel.Professeurs" Role="Professeurs" Multiplicity="1" />
+          <End Type="Site_gestion_etudiantModel.association_prof_cours" Role="association_prof_cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professeurs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="association_prof_cours">
+              <PropertyRef Name="FK_Professeur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -178,10 +292,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="association_prof_cours">
+            <EntityTypeMapping TypeName="Site_gestion_etudiantModel.association_prof_cours">
+              <MappingFragment StoreEntitySet="association_prof_cours">
+                <ScalarProperty Name="association_table" ColumnName="association_table" />
+                <ScalarProperty Name="FK_Professeur" ColumnName="FK_Professeur" />
+                <ScalarProperty Name="FK_Cours" ColumnName="FK_Cours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cours">
             <EntityTypeMapping TypeName="Site_gestion_etudiantModel.cours">
               <MappingFragment StoreEntitySet="cours">
-                <ScalarProperty Name="cours1" ColumnName="cours" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -196,6 +319,7 @@
                 <ScalarProperty Name="Last_name" ColumnName="Last_name" />
                 <ScalarProperty Name="First_name" ColumnName="First_name" />
                 <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="date_modif" ColumnName="date_modif" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -205,6 +329,18 @@
               <MappingFragment StoreEntitySet="Name_Password">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Professeurs">
+            <EntityTypeMapping TypeName="Site_gestion_etudiantModel.Professeurs">
+              <MappingFragment StoreEntitySet="Professeurs">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

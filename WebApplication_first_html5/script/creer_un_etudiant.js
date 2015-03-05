@@ -6,8 +6,14 @@
 //    this.section = section;
 //    this.email_adresse = email_adresse;
 //};
+function document_ready() {
+    //date_picker_function();
+    document.getElementById("Date").innerHTML = Date();
+}
+
 
 function submission_etudiant() {
+    //alert("5");
     document.getElementById("date_of_subscription").value = Date();
     //var text_FirstName = document.getElementById("first-name");
     //var text_LastName = document.getElementById("last-name");

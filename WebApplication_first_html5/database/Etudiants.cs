@@ -20,6 +20,7 @@ namespace WebApplication_first_html5.database
         }
     
         public int id { get; set; }
+        public string date_modif { get; set; }
         public string date { get; set; }
         public string First_name { get; set; }
         public string Last_name { get; set; }

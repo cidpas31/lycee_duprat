@@ -14,7 +14,11 @@
     <link rel="stylesheet" href="styles/footer_color.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/header_color.css">
+    <link rel="stylesheet" href="styles/body.css">
+
+
     <script>
+        data = null;
     $(document).ready(function () {
         document_ready();
     });
@@ -22,16 +26,17 @@
 
 </head>
 <body>
-    <ul class="navigation_ul">
-        <li><a href="/page_navigation_gestion_etudiant.html" class="navigation">acceuil</a></li>
-        <li><a href="/CreerEtudiant.html" class="navigation">Etudiant</a></li>
-        <li><a href="/CreerProfesseur.html" class="navigation">Professeur</a></li>
-        <li><a href="/CreerCours.html" class="navigation">cours</a></li>
-        <li><a href="/Afficherlisteetudiant.html" class="navigation">liste etudiant</a></li>
-    </ul>
+
     <header class="page-header">
         <div class="container">
-            <h1 class="title_liste_des_etudiants">liste des etudiants</h1>
+            <ul class="navigation_ul">
+                <li><a href="/page_navigation_gestion_etudiant.html" class="navigation">acceuil</a></li>
+                <li><a href="/CreerEtudiant.html" class="navigation">Etudiant</a></li>
+                <li><a href="/CreerProfesseur.html" class="navigation">Professeur</a></li>
+                <li><a href="/CreerCours.html" class="navigation">cours</a></li>
+                <li><a href="/Afficherlisteetudiant.html" class="navigation">liste etudiant</a></li>
+            </ul>
+            <h2 class="title_liste_des_etudiants">liste des etudiants</h2>
         </div>
 
     </header>
@@ -42,11 +47,11 @@
                 <section>
                     <div class="field">
                         <fieldset>
-                            <ul id="ul_liste_etudiant">  
-                                <li hidden="hidden"></li>                         
+                            <ul id="ul_liste_etudiant">                         
                             </ul>                          
                         </fieldset>
                     </div>
+                    <input id="data_transmise" type="text" value="" onchange="data=this.value" hidden="hidden">
                 </section>
             </fieldset>
         </form>

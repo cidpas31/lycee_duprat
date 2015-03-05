@@ -1,30 +1,50 @@
-﻿//var new_element = jquery("<il>?</il>");
+﻿function etudiant_existe() {
+    $.ajax({
+        url: "server/Web_service_site_etudiant.asmx/get_all_etudiant", //ressource cyble id ="+ id + "
+        type: "POST", //type de requet get par default
+        contentType: "application/json; charset=utf-8",
+        dataType: 'json',
+        success: function (msg) {
+            if (msg.d.length == 0) {
+                window.location.replace('/popup/popup_etudiant_existe.html');
+            }
+        },
+        complete: function (msg) {
+            //alert("2");
+        },
+        error: function (msg) {
+            //alert("3");
+            //alert("3" + JSON.stringify(msg));
+        },
+        send: function (msg) {
+            //alert("4");
+        },
+        stop: function (msg) {
+            //alert("5");
+        },
+        start: function (msg) {
+            //alert("6");
+        }
+    });
+}
+
+function close_windows_popup() {
+    window.location.replace('../CreerEtudiant.html');
+}
 
 function document_ready() {
-
+    etudiant_existe();
     $.ajax({
-        url: "server/liste_etudiant.aspx/get_all", //ressource cyble
+        url: "server/Web_service_site_etudiant.asmx/get_all_etudiant", //ressource cyble
         type: "POST", //type de requet get par default
-        data: {},//'__type':"",'id':"",'date': "", '&First_name': "", '&Last_name': "", '&Age': "", '&Phone': "", '&Section': "", '&Email': "" 
         contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        //success: function (code_json, statut) { // code_json contient le HTML renvoyé
-        //    $(code_json).appendTo("#ul_liste_etudiant").append(new_element);
-        //},
-        //error: function (resultat, statut, erreur) {
-
-        //},
-        //complete: function (resultat, statut) {
-
-        //}
-
         success: function (msg) {
             //alert("1" + JSON.stringify(msg));
 
             for (var i = 0; i < msg.d.length; i++) {
 
-                document.getElementById('ul_liste_etudiant').innerHTML += "<li onclick='afficher_list_de_cours()'>" + msg.d[i].First_name + msg.d[i].Last_name + "</li>";
-                //document.getElementById('ul_liste_etudiant').innerHTML += "<li hidden='hidden' id='etudiant" + First_name + ">" + msg.d[i].id + "</li>";
+                document.getElementById('ul_liste_etudiant').innerHTML += "<li onclick='afficher_details_etudiant(" + msg.d[i].id + ")' >" + msg.d[i].First_name +" "+ msg.d[i].Last_name + "</li>";
             }
 
         },
@@ -48,48 +68,13 @@ function document_ready() {
 
 }
 
-function afficher_list_de_cours() {
-    $.ajax({
-        url: "server/liste_etudiant.aspx/get_all_cours", //ressource cyble
-        type: "POST", //type de requet get par default
-        data: {},//'__type':"",'id':"",'date': "", '&First_name': "", '&Last_name': "", '&Age': "", '&Phone': "", '&Section': "", '&Email': "" 
-        contentType: "application/json; charset=utf-8",
-        dataType: 'json',
-        //success: function (code_json, statut) { // code_json contient le HTML renvoyé
-        //    $(code_json).appendTo("#ul_liste_etudiant").append(new_element);
-        //},
-        //error: function (resultat, statut, erreur) {
+function afficher_details_etudiant(id) {
+    window.location.replace("/popup/popup_etudiant_details.html" + "?" + id, "");
 
-        //},
-        //complete: function (resultat, statut) {
-
-        //}
-
-        success: function (msg) {
-            //alert("1" + JSON.stringify(msg));
-
-            for (var i = 0; i < msg.d.length; i++) {
-
-                document.getElementById('ul_liste_etudiant').innerHTML += "<li onclick='afficher_list_de_cours()>" + msg.d[i].First_name + msg.d[i].Last_name + "</li>";
-                document.getElementById('ul_liste_etudiant').innerHTML += "<li hidden='hidden' id='etudiant" + First_name + ">" + msg.d[i].id +"</li>";
-            }
-
-        },
-        complete: function (msg) {
-            //alert("2");
-        },
-        error: function (msg) {
-            //alert("3");
-            alert("3" + JSON.stringify(msg));
-        },
-        send: function (msg) {
-            //alert("4");
-        },
-        stop: function (msg) {
-            //alert("5");
-        },
-        start: function (msg) {
-            //alert("6");
-        }
-    });
 }
+
+
+
+
+
+

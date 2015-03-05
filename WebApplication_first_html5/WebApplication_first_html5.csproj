@@ -56,6 +56,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -129,19 +130,28 @@
     </Content>
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="page_navigation_gestion_etudiant.html" />
+    <Content Include="popup\popup_etudiant_details.html" />
+    <Content Include="popup\popup_prof_existe.html" />
+    <Content Include="popup\popup_etudiant_existe.html" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.11.3.js" />
     <Content Include="Scripts\jquery-ui-1.11.3.min.js" />
     <Content Include="script\authentification.js" />
+    <Content Include="script\creer_cours.js" />
+    <Content Include="script\creer_prof.js" />
     <Content Include="script\creer_un_etudiant.js" />
     <Content Include="script\creer_un_etudiant_jquery.js" />
+    <Content Include="script\details_etudiant.js" />
     <Content Include="script\JavaScript1.js" />
     <Content Include="script\liste_etudiant.js" />
     <Content Include="script\solution.js" />
     <Content Include="server\authentification.aspx" />
+    <Content Include="server\gestion_des_cours.aspx" />
     <Content Include="server\gestion_des_etudiants.aspx" />
-    <Content Include="server\liste_etudiant.aspx" />
+    <Content Include="server\gestion_des_professeur.aspx" />
+    <Content Include="server\mise_a_jour_etudiant.aspx" />
+    <Content Include="server\Web_service_site_etudiant.asmx" />
     <Content Include="styles\body.css" />
     <Content Include="styles\footer.css" />
     <Content Include="styles\footer_color.css" />
@@ -153,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="database\association_etudiant_cours.cs">
+      <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="database\association_prof_cours.cs">
       <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
     </Compile>
     <Compile Include="database\cours.cs">
@@ -179,6 +192,9 @@
     <Compile Include="database\Name_Password.cs">
       <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
     </Compile>
+    <Compile Include="database\Professeurs.cs">
+      <DependentUpon>Database_gestion_etudiant.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="server\authentification.aspx.cs">
       <DependentUpon>authentification.aspx</DependentUpon>
@@ -187,6 +203,13 @@
     <Compile Include="server\authentification.aspx.designer.cs">
       <DependentUpon>authentification.aspx</DependentUpon>
     </Compile>
+    <Compile Include="server\gestion_des_cours.aspx.cs">
+      <DependentUpon>gestion_des_cours.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="server\gestion_des_cours.aspx.designer.cs">
+      <DependentUpon>gestion_des_cours.aspx</DependentUpon>
+    </Compile>
     <Compile Include="server\gestion_des_etudiants.aspx.cs">
       <DependentUpon>gestion_des_etudiants.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,12 +217,23 @@
     <Compile Include="server\gestion_des_etudiants.aspx.designer.cs">
       <DependentUpon>gestion_des_etudiants.aspx</DependentUpon>
     </Compile>
-    <Compile Include="server\liste_etudiant.aspx.cs">
-      <DependentUpon>liste_etudiant.aspx</DependentUpon>
+    <Compile Include="server\gestion_des_professeur.aspx.cs">
+      <DependentUpon>gestion_des_professeur.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="server\liste_etudiant.aspx.designer.cs">
-      <DependentUpon>liste_etudiant.aspx</DependentUpon>
+    <Compile Include="server\gestion_des_professeur.aspx.designer.cs">
+      <DependentUpon>gestion_des_professeur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="server\mise_a_jour_etudiant.aspx.cs">
+      <DependentUpon>mise_a_jour_etudiant.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="server\mise_a_jour_etudiant.aspx.designer.cs">
+      <DependentUpon>mise_a_jour_etudiant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="server\Web_service_site_etudiant.asmx.cs">
+      <DependentUpon>Web_service_site_etudiant.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
