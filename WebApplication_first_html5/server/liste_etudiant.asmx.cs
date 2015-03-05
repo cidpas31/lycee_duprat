@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Web.Services;
 using WebApplication_first_html5.database;
 
 namespace WebApplication_first_html5.server
 {
-
-
+    /// <summary>
+    /// Summary description for liste_etudiant1
+    /// </summary>
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
-    public partial class liste_etudiant : System.Web.UI.Page
+    public class liste_etudiant1 : System.Web.Services.WebService
     {
+
         public class mon_etudiant_Json
         {
             public int id { get; set; }
@@ -25,14 +30,8 @@ namespace WebApplication_first_html5.server
             public string Email { get; set; }
         }
 
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        [System.Web.Services.WebMethod]
-        public static List<mon_etudiant_Json> get_all_etudiant()
+        [WebMethod]
+        public List<mon_etudiant_Json> get_all_etudiant()
         {
             Site_gestion_etudiantEntities context = new Site_gestion_etudiantEntities();
 
@@ -53,8 +52,8 @@ namespace WebApplication_first_html5.server
         }
 
 
-        [System.Web.Services.WebMethod]
-        public static mon_etudiant_Json get_all_etudiant_details(string id)
+        [WebMethod]
+        public mon_etudiant_Json get_all_etudiant_details(string id)
         {
             int id_mon_etudiant;
             id_mon_etudiant = Convert.ToInt32(id);
